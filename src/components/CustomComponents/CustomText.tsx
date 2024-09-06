@@ -7,6 +7,8 @@ import { Colors } from '../../utils/Constants';
 interface Props {
     variant?:
     "h1" |
+    // | is union sign that till H1 to H9 all are in union then if not H1 to H9 then 
+    // it will show body text
     "h2" |
     "h3" |
     "h4" |
@@ -16,6 +18,7 @@ interface Props {
     "h8" |
     "h9" |
     "body";
+    // body means pargarph(P1) text
     fontFamily?: Fonts;
     fontSize?: number;
     style?: TextStyle | TextStyle[];
@@ -33,6 +36,9 @@ const CustomText: React.FC<Props> = ({
     numberOfLines,
     onLayout,
     ...props
+    // Rest operator cause it is use in function if in object literal then will be  known
+    // as spread operator 
+    // convert all other into [variant , fontFamily ....]
 }) => {
     // Calculate default fontSize based on variant
     let computedFontSize: number;
@@ -81,10 +87,19 @@ const CustomText: React.FC<Props> = ({
                     styles.text,
                     {
                         color: Colors.text,
+                       // we have put the hardcore value of color so it can't change
+
                         fontSize: fontSize, // Use final font size
+
+                        // fontSize: computedFontSize, // by using computed size it taking default value 
+                        // not hardcore value so it can change
+
                         fontFamily: fontFamily,
+                        // not hardcore value so it can change
+
                     },
                     style
+                    // for new style that will be overwritten because or prefrence
                 ]}
                 numberOfLines={numberOfLines}
                 {...props}
@@ -94,6 +109,12 @@ const CustomText: React.FC<Props> = ({
         </View>
     );
 }
+
+// Priority order in styles
+// 1.External styles
+// 2. Inline
+// 3. Props one 
+// 4. Default styles that has been done by React Native
 
 export default CustomText;
 

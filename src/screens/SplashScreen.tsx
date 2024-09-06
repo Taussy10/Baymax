@@ -7,6 +7,10 @@ import Animated from 'react-native-reanimated'
 import { screenHeight, screenWidth } from '../utils/Scaling'
 import LinearGradient from 'react-native-linear-gradient'
 import CustomText from '../components/CustomComponents/CustomText'
+import LottieView from 'lottie-react-native'
+
+
+import CustomBanner from '../components/CustomComponents/CustomBanner'
 
 // for navigation you can try 3 methods
 // 1. By passing props 
@@ -31,9 +35,28 @@ const SplashScreen:FC = () => {
  <View>
 
   <View style={styles.textContainer}>
-  <CustomText fontSize={104} fontFamily={Fonts.Theme}  >
-    Hello
-  </CustomText>
+  <CustomText fontSize={34}  fontFamily={Fonts.Theme}  >
+    Hellos
+    </CustomText>
+
+  <LottieView
+  source={require("../assets/animations/sync.json")}
+  style={{width:280 , height:100}}
+  autoPlay={true}
+  loop
+   />
+
+   {/* Why color took string cause you defined it and why fontSize as variable ? cause  fontSize needs a expression
+   javascript take value either as string or curly so we can't use curly cause didn't defined
+   
+   <CustomBanner color='red' fontSize= {50} >
+    Hello 
+   </CustomBanner>*/}
+
+
+   <CustomText  >
+   Synchronizzing best configuration for you 
+    </CustomText>
   </View>
   
  </View>
@@ -79,5 +102,14 @@ const styles = StyleSheet.create({
  width: "100%",
   },
 textContainer:{
+backgroundColor:'white',
+// flex: 1,
+borderRadius: 20,
+padding: 20,
+shadowOffset:{width: 1, height:1},
+shadowOpacity: 1,
+shadowRadius: 2,
+alignItems:'center',
+shadowColor: Colors.border,
 
 }})
