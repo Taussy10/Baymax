@@ -12,7 +12,9 @@ const Stack = createNativeStackNavigator()
 // FC means fucntional componnets:
 const Navigation:FC = () => {
   return (
-    // <NavigationContainer>
+    
+
+    
  <Stack.Navigator screenOptions={{headerShown: false}} > 
     <Stack.Screen name='SplashScreen' component={SplashScreen}  />
     <Stack.Screen name='BaymaxScreen' component={BaymaxScreen}  />

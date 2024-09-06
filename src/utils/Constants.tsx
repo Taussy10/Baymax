@@ -1,5 +1,7 @@
 import { screenWidth } from "./Scaling";
+import { screenHeight } from "./Scaling";
 
+// enum is data types 
 export enum Colors {
     primary = '#AF1125',
     white = '#fff',
