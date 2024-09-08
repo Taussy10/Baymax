@@ -23,22 +23,29 @@ const SplashScreen:FC = () => {
   return (
    <SafeAreaView style={styles.container}>
     {/* <TouchableOpacity onPress={()=> navigate("BaymaxScreen") }> */}
+
+    {/* For animating image */}
 <Animated.View style={styles.imageContainer} >
   <Image source={require("../assets/images/launch.png")} 
   style={styles.img}
   />
 </Animated.View>
-    {/* </TouchableOpacity> */}
 
+
+    {/* </TouchableOpacity> */}
+{/* For animating subcontainer */}
 <Animated.View  style={styles.gradientContainer}>
   <LinearGradient colors={bottomColors} style={styles.gradient} >
- <View>
+ {/* <View> */}
 
+
+{/* sub container{Has text and animation} */}
   <View style={styles.textContainer}>
+
   <CustomText fontSize={34}  fontFamily={Fonts.Theme}  >
     Hellos
     </CustomText>
-
+    
   <LottieView
   source={require("../assets/animations/sync.json")}
   style={{width:280 , height:100}}
@@ -57,9 +64,11 @@ const SplashScreen:FC = () => {
    <CustomText  >
    Synchronizzing best configuration for you 
     </CustomText>
-  </View>
+    
+    </View>
   
- </View>
+ {/* </View> */}
+ 
   </LinearGradient>
 </Animated.View>
 
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
   },
 textContainer:{
 backgroundColor:'white',
-// flex: 1,
+flex: 1,
 borderRadius: 20,
 padding: 20,
 shadowOffset:{width: 1, height:1},

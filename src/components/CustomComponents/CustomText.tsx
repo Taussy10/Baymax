@@ -110,7 +110,7 @@ const CustomText: React.FC<Props> = ({
     );
 }
 
-// Priority order in styles
+// Priority order in styles(Prefrence)
 // 1.External styles
 // 2. Inline
 // 3. Props one 
