@@ -1,7 +1,7 @@
 // How to create Custom Component
 
-import { StyleSheet, Text, View } from 'react-native'
-import React, { Children } from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+//import React, { Children } from 'react'
 
 
 interface Props{
@@ -30,6 +30,6 @@ const CustomBanner: React.FC<Props> = ({color , children , fontSize}) => {
   )
 }
 
-export default CustomBanner
+export default CustomBanner;
 
-const styles = StyleSheet.create({})
+//const styles = StyleSheet.create({})

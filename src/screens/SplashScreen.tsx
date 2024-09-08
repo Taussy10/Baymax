@@ -10,7 +10,7 @@ import CustomText from '../components/CustomComponents/CustomText'
 import LottieView from 'lottie-react-native'
 
 
-import CustomBanner from '../components/CustomComponents/CustomBanner'
+//import CustomBanner from '../components/CustomComponents/CustomBanner'
 
 // for navigation you can try 3 methods
 // 1. By passing props 
@@ -24,9 +24,11 @@ const SplashScreen:FC = () => {
    <SafeAreaView style={styles.container}>
     {/* <TouchableOpacity onPress={()=> navigate("BaymaxScreen") }> */}
 
+   {/* There will be two animated views: for image animations and sub container  */}
+
     {/* For animating image */}
 <Animated.View style={styles.imageContainer} >
-  <Image source={require("../assets/images/launch.png")} 
+  <Image source={require('../assets/images/launch.png')} 
   style={styles.img}
   />
 </Animated.View>
@@ -35,6 +37,8 @@ const SplashScreen:FC = () => {
     {/* </TouchableOpacity> */}
 {/* For animating subcontainer */}
 <Animated.View  style={styles.gradientContainer}>
+
+  {/* Why linear gradient try to remove it  */}
   <LinearGradient colors={bottomColors} style={styles.gradient} >
  {/* <View> */}
 
@@ -42,12 +46,16 @@ const SplashScreen:FC = () => {
 {/* sub container{Has text and animation} */}
   <View style={styles.textContainer}>
 
-  <CustomText fontSize={34}  fontFamily={Fonts.Theme}  >
+
+ {/* 
+  <CustomText fontSize={34}  fontFamily={Fonts.Theme}  >*/}
+  <CustomText fontSize= {34}   fontFamily={Fonts.Theme}  >
     Hellos
     </CustomText>
     
   <LottieView
   source={require("../assets/animations/sync.json")}
+  // eslint-disable-next-line react-native/no-inline-styles
   style={{width:280 , height:100}}
   autoPlay={true}
   loop
@@ -62,7 +70,7 @@ const SplashScreen:FC = () => {
 
 
    <CustomText  >
-   Synchronizzing best configuration for you 
+   Synchronizing best configuration for you 
     </CustomText>
     
     </View>

@@ -5,6 +5,7 @@ import { moderateScale } from 'react-native-size-matters';
 import { Colors } from '../../utils/Constants';
 
 interface Props {
+    //variant use for consistent design 
     variant?:
     "h1" |
     // | is union sign that till H1 to H9 all are in union then if not H1 to H9 then 
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const CustomText: React.FC<Props> = ({
-    variant = 'body',
+   variant = 'body',
     fontFamily = Fonts.Regular,
     fontSize, // Take fontSize prop
     style,
@@ -45,34 +46,34 @@ const CustomText: React.FC<Props> = ({
 
     switch (variant) {
         case 'h1':
-            computedFontSize = moderateScale(22);
+            computedFontSize = moderateScale(fontSize || 22);
             break;
         case 'h2':
-            computedFontSize = moderateScale(20);
+            computedFontSize = moderateScale(fontSize || 20);
             break;
         case 'h3':
-            computedFontSize = moderateScale(18);
+            computedFontSize = moderateScale(fontSize || 18);
             break;
         case 'h4':
-            computedFontSize = moderateScale(16);
+            computedFontSize = moderateScale(fontSize || 16);
             break;
         case 'h5':
-            computedFontSize = moderateScale(14);
+            computedFontSize = moderateScale(fontSize || 14);
             break;
         case 'h6':
-            computedFontSize = moderateScale(12);
+            computedFontSize = moderateScale(fontSize || 12);
             break;
         case 'h7':
-            computedFontSize = moderateScale(11);
+            computedFontSize = moderateScale(fontSize || 11);
             break;
         case 'h8':
-            computedFontSize = moderateScale(10);
+            computedFontSize = moderateScale(fontSize || 10);
             break;
         case 'h9':
-            computedFontSize = moderateScale(9);
+            computedFontSize = moderateScale(fontSize || 9);
             break;
         default:
-            computedFontSize = moderateScale(12); // Default body size
+            computedFontSize = moderateScale(fontSize || 12); // Default body size
             break;
     }
 
@@ -89,19 +90,20 @@ const CustomText: React.FC<Props> = ({
                         color: Colors.text,
                        // we have put the hardcore value of color so it can't change
 
-                        fontSize: fontSize, // Use final font size
+                       // fontSize: fontSize, // Use final font size
 
-                        // fontSize: computedFontSize, // by using computed size it taking default value 
+                         fontSize: computedFontSize, // by using computed size it taking default value 
                         // not hardcore value so it can change
 
                         fontFamily: fontFamily,
                         // not hardcore value so it can change
 
                     },
-                    style
+                    //styles.text,
+                    style,
                     // for new style that will be overwritten because or prefrence
                 ]}
-                numberOfLines={numberOfLines}
+                numberOfLines={numberOfLines !== undefined ? numberOfLines : undefined }
                 {...props}
             >
                 {children}
@@ -111,15 +113,14 @@ const CustomText: React.FC<Props> = ({
 }
 
 // Priority order in styles(Prefrence)
-// 1.External styles
-// 2. Inline
-// 3. Props one 
-// 4. Default styles that has been done by React Native
+//the later styles have higher priority
+
 
 export default CustomText;
 
 const styles = StyleSheet.create({
     text: {
-        textAlign: 'left',
+        textAlign: 'left', 
+        fontSize: 34
     }
 });
