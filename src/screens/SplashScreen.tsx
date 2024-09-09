@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View , Image } from 'react-native'
-import React, { FC } from 'react'
+import React, { FC , useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors, Fonts, lightColors } from '../utils/Constants'
 import { navigate, resetAndNavigate } from '../utils/NavigationUtils'
-import Animated from 'react-native-reanimated'
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { screenHeight, screenWidth } from '../utils/Scaling'
 import LinearGradient from 'react-native-linear-gradient'
 import CustomText from '../components/CustomComponents/CustomText'
@@ -20,6 +20,63 @@ import LottieView from 'lottie-react-native'
 const bottomColors = [...lightColors].reverse()
 
 const SplashScreen:FC = () => {
+
+  // For two aniamtions
+  // useSharedValue manages state that can drive animations.
+
+  // Reanimated animations: take 3 things 1.useShareValue(Kinda useState hook but work on UI thread BTW we directly cahnge the state by baymaxAnimtion.something) 
+  // useAnimatedValue:
+  // Animated.view/Image... The part of component that you want to animate
+
+
+  // So how we handled it ?
+
+// 1. using useSharedValue put the gave the screen height 
+// What is it imagine screen height 100 so here useShared valu 100*0.8 = 80
+const baymaxAnimation = useSharedValue(screenHeight*0.8)
+// const baymaxAnimation = useSharedValue(1)
+const messageContainerAnimation = useSharedValue(screenHeight*0.8 )
+// const messageContainerAnimation = useSharedValue(20 )
+
+// 3. Launch it so that it can top of screen
+
+const launchAnimation = async() =>{
+  messageContainerAnimation.value = screenHeight*0.001 
+
+  // after sometime 
+  setTimeout(() => {
+    baymaxAnimation.value = screenHeight*0.001   
+  }, 500);
+  
+
+} 
+
+useEffect(() => {
+  launchAnimation()
+}, [])
+
+
+
+
+
+// 2. writing styles for animations by modyifing useShareValue properties.
+// so screen height is 80 now put it into 1500 and 1200  and in y direction 
+const baymaxStyle = useAnimatedStyle(()=> {
+  return {
+    transform: [{translateY: withTiming(baymaxAnimation.value,
+      {duration:1500} ) }]
+      // duration for fast and slow
+      // transform property use for scaling/rotating so we are usin translateY: 
+  }
+})
+
+const messageContainerStyle = useAnimatedStyle(()=> {
+  return {
+    transform: [{translateY: withTiming(messageContainerAnimation.value,
+      {duration:1200} ) }]
+  }
+})
+
   return (
    <SafeAreaView style={styles.container}>
     {/* <TouchableOpacity onPress={()=> navigate("BaymaxScreen") }> */}
@@ -27,7 +84,7 @@ const SplashScreen:FC = () => {
    {/* There will be two animated views: for image animations and sub container  */}
 
     {/* For animating image */}
-<Animated.View style={styles.imageContainer} >
+<Animated.View style={[styles.imageContainer , baymaxStyle]} >
   <Image source={require('../assets/images/launch.png')} 
   style={styles.img}
   />
@@ -36,7 +93,7 @@ const SplashScreen:FC = () => {
 
     {/* </TouchableOpacity> */}
 {/* For animating subcontainer */}
-<Animated.View  style={styles.gradientContainer}>
+<Animated.View  style={[styles.gradientContainer , messageContainerStyle]}>
 
   {/* Why linear gradient try to remove it  */}
   <LinearGradient colors={bottomColors} style={styles.gradient} >
@@ -44,17 +101,17 @@ const SplashScreen:FC = () => {
 
 
 {/* sub container{Has text and animation} */}
-  <View style={styles.textContainer}>
+  <View style={styles.textContainer }>
 
 
  {/* 
   <CustomText fontSize={34}  fontFamily={Fonts.Theme}  >*/}
   <CustomText fontSize= {34}   fontFamily={Fonts.Theme}  >
-    Hellos
+    Baymax
     </CustomText>
     
   <LottieView
-  source={require("../assets/animations/sync.json")}
+  source={require('../assets/animations/sync.json')}
   // eslint-disable-next-line react-native/no-inline-styles
   style={{width:280 , height:100}}
   autoPlay={true}
