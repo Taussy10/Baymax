@@ -8,6 +8,8 @@ import { screenHeight, screenWidth } from '../utils/Scaling'
 import LinearGradient from 'react-native-linear-gradient'
 import CustomText from '../components/CustomComponents/CustomText'
 import LottieView from 'lottie-react-native'
+import Tts from 'react-native-tts'
+import { initializeTtsListeners } from '../utils/ttlsListeners'
 
 
 //import CustomBanner from '../components/CustomComponents/CustomBanner'
@@ -42,16 +44,24 @@ const messageContainerAnimation = useSharedValue(screenHeight*0.8 )
 
 const launchAnimation = async() =>{
   messageContainerAnimation.value = screenHeight*0.001 
-
+ 
   // after sometime 
   setTimeout(() => {
     baymaxAnimation.value = screenHeight*0.001   
+    // after the messagge baymax and message container comes to top
+    Tts.speak("Hello I'm Baymax")
   }, 500);
-  
+
+  setTimeout(() => {
+    resetAndNavigate('BaymaxScreen')
+    // it will reset history of stacks so that you can't go again to splash screen 
+  }, 2500);
+
 
 } 
 
 useEffect(() => {
+  initializeTtsListeners()
   launchAnimation()
 }, [])
 

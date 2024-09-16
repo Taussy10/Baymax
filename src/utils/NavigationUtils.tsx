@@ -26,13 +26,12 @@ export async function navigate(routeName: string, params?: object) {
     }
 }
 
-// Reset all: use for loggin screeen when user complete all then step then he will redirect to home and when he backs then there will be no log in screen 
+// Reset all: use for loggin screeen when user completes all then steps then he will redirect to home and when he backs then there will be no log in screen 
 
 export async function resetAndNavigate(routeName: string, params?: object) {
     // Check if the NavigationContainer is mounted and ready to handle navigation actions
     // mounted means:  it means that the navigation system is fully set up and ready to handle navigation
     //  actions like moving between screens.
-
     if (navigationRef.isReady()) {
         // Dispatch a navigate action to move to the specified screen (routeName) with optional parameters (params)
         navigationRef.dispatch(CommonActions.reset({
