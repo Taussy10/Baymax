@@ -12,12 +12,14 @@ const Background:FC<{blurOpacity:any}> = ({blurOpacity}) => {
      <Image source={require("../../assets/images/baymax.png")}
      style={styles.image}
      />
-  <Animated.View style={[styles.absolute , {opacity:blurOpacity}]}>
+     {/* , {opacity:blurOpacity} */}
+  <Animated.View style={[styles.absolute ,{opacity:blurOpacity} ]}>
     <BlurView style={styles.absolute}
     blurType='ultraThinMaterial'
-    blurAmount={2}
+    blurAmount={20}
     />
   </Animated.View>
+  {/* understand it: [for writing multiple typs of css] then {for writing inline css} */}
 
     </View>
   )
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
     height: screenHeight*1.2 ,
     position:'absolute',
     zIndex: -1,
+
 // z index is for which will come at the top in Z direction
 // -ve values will have low priority but will do same work
 // https://developer.mozilla.org/en-US/docs/Web/CSS/z-index
@@ -40,7 +43,8 @@ const styles = StyleSheet.create({
   top:0,
   left:0,
   right:0,
-  height:"100%"
+  height:"100%",
+  
 
   },
   image:{

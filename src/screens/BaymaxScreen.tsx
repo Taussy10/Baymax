@@ -15,27 +15,40 @@ const BaymaxScreen = () => {
  
 
   const blurOpacity = useRef(new Animated.Value(0)).current
+  // useRef is use for stroing mutable values that doesn't rerenders  
+
+  // .current stores the value so blurOpacity  = 0 
+console.log(blurOpacity);
+
 // blur current value 0 {0: transparent and 1: opaque}
-const startBlur = () =>{
-  Animated.timing(blurOpacity,{
-    toValue: 1,
-    duration: 2000,
-    useNativeDriver: true,
-    // https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated
-  }).start()
-}
-const removeBlur = () =>{
+// const startBlur = () =>{
+//   Animated.timing(blurOpacity,{
+//     toValue: 20,
+//     duration: 2000,
+//     useNativeDriver: true,
+//     // https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated
+//   }).start()
+// }
+const unBlur = () =>{
   Animated.timing(blurOpacity,{
     toValue: 0,
-    duration: 2000,
+    duration: 20000,
     useNativeDriver: true,
     // https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated
   }).start()
 }
 
 useEffect(() => {
-  
-}, [])
+  const startBlur = () =>{
+    Animated.timing(blurOpacity,{
+      toValue: 20,
+      duration: 2000,
+      useNativeDriver: true,
+      // https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated
+    }).start()
+  }
+}, [blurOpacity])
+
 
 
   return (
