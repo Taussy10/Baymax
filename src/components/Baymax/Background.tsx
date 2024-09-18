@@ -12,11 +12,12 @@ const Background:FC<{blurOpacity:any}> = ({blurOpacity}) => {
      <Image source={require("../../assets/images/baymax.png")}
      style={styles.image}
      />
-     {/* , {opacity:blurOpacity} */}
-  <Animated.View style={[styles.absolute ,{opacity:blurOpacity} ]}>
+     {/* , {opacity:blurOpacity} the error is due type of blurOpacity put
+     it into styles it will give error */}
+  <Animated.View style={[styles.absolute , ]}>
     <BlurView style={styles.absolute}
     blurType='ultraThinMaterial'
-    blurAmount={20}
+    // blurAmount={20}
     />
   </Animated.View>
   {/* understand it: [for writing multiple typs of css] then {for writing inline css} */}
