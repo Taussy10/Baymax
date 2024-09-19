@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import { screenHeight, screenWidth } from '../../utils/Scaling'
 import Animated from 'react-native-reanimated'
 import { BlurView } from '@react-native-community/blur'
+import { opacity } from 'react-native-reanimated/lib/typescript/Colors'
 
 
 
@@ -14,7 +15,7 @@ const Background:FC<{blurOpacity:any}> = ({blurOpacity}) => {
      />
      {/* , {opacity:blurOpacity} the error is due type of blurOpacity put
      it into styles it will give error */}
-  <Animated.View style={[styles.absolute , ]}>
+  <Animated.View style={[styles.absolute , {opacity: 50} ]}>
     <BlurView style={styles.absolute}
     blurType='ultraThinMaterial'
     // blurAmount={20}

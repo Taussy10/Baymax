@@ -3,6 +3,8 @@ import React,{FC, useRef , useEffect} from 'react'
 import { screenHeight, screenWidth } from '../../utils/Scaling'
 import { bigHero6Data } from '../../utils/data'
 // import Animated from 'react-native-reanimated'
+import Water from '../Options/Water'
+
 
 const BigHero6:FC<{onPress:(type:String)=> void}> = ({onPress}) => {
 
@@ -30,8 +32,8 @@ useEffect(() => {
      {
       bigHero6Data.map((item , index) => {
      const angle = (index/6)*2*Math.PI;
-     const x = 140 * Math.cos(angle)
-     const y = 140 * Math.sin(angle)
+     const y = screenWidth*0.38 * Math.sin(angle)
+     const x = screenWidth*0.38 * Math.cos(angle)
 
         const translateX =  animatedValues[index].interpolate({
           inputRange: [0,1],
@@ -51,7 +53,12 @@ useEffect(() => {
             ]
           }]}
           >
-<Text>Hello </Text>
+            { item !== 'water' && 
+<Text>Hello </Text>}
+
+{item === 'water' && <Water/>}
+            
+
          </Animated.View>
         )
       } )
